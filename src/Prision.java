@@ -4,6 +4,11 @@ import java.util.*;
 
 public class Prision {
 
+
+
+
+  /*¡¡¡¡¡PREGUNTA!!!!!  ->    Para buscar a un preso por qué atributo debería buscarlo? o es indiferente?  */
+
   /*
    * Se deben crear tres clases,
    * una llamada Interno, otra Prisión y una Main de prueba. Dependiendo de la
@@ -79,6 +84,15 @@ public class Prision {
     
   }
     
+  }
+
+
+  public Interno modificaInterno(Interno interno){
+
+
+
+    return interno;
+
   }
 
 
