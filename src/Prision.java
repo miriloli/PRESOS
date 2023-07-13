@@ -89,7 +89,13 @@ public class Prision {
 
   public Interno modificaInterno(Interno interno){
 
+        for (int i=0;i<listaInternos.size();i++){
+          if (listaInternos.get(i)==interno){
+            listaInternos.set(i, interno);
 
+          }
+
+        }
 
     return interno;
 
