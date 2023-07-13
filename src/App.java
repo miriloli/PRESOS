@@ -1,3 +1,6 @@
+import javax.swing.JOptionPane;
+import java.util.*;
+
 public class App {
     public static void main(String[] args) throws Exception {
         /*
@@ -35,5 +38,21 @@ public class App {
          * mensajes user friendly para verlo y probarlo bien)
          * 
          */
+
+
+
+
+
+
+        
+        Scanner sc = new Scanner(System.in);
+        
+        Interno interno=new Interno();
+        
+
+
+
+
+
     }
 }

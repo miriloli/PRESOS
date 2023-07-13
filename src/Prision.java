@@ -1,13 +1,12 @@
 
-
 import java.util.*;
 
 public class Prision {
 
-
-
-
-  /*¡¡¡¡¡PREGUNTA!!!!!  ->    Para buscar a un preso por qué atributo debería buscarlo? o es indiferente?  */
+  /*
+   * ¡¡¡¡¡PREGUNTA!!!!! -> Para buscar a un preso por qué atributo debería
+   * buscarlo? o es indiferente?
+   */
 
   /*
    * Se deben crear tres clases,
@@ -46,62 +45,52 @@ public class Prision {
 
   List<Interno> listaInternos = new ArrayList<Interno>();
 
-  public Interno añardirPreso(Interno interno) {
+  public Interno añardeInterno(Interno interno) {
 
     listaInternos.add(interno);
 
     return interno;
   }
 
-  public Interno eliminarPreso(Interno interno) {
+  public Interno eliminaInterno(Interno interno) {
 
     listaInternos.remove(interno);
 
     return interno;
   }
 
-  public Interno buscarPreso(String nombre) {
-    
-    Interno interno= new Interno();
+  public Interno buscaInterno(String nombre) {
+
+    Interno interno = new Interno();
 
     for (Interno internoAux : listaInternos) {
-       if (nombre==internoAux.nombre){
-            interno=internoAux;
+      if (nombre == internoAux.nombre) {
+        interno = internoAux;
 
+      }
 
-       }
-      
     }
 
     return interno;
   }
 
-  public void imprimirInterno() {
+  public Interno modificaRegimenInterno(String nombre, String regimen) {
 
-  for (Interno interno : listaInternos) {
-
-    System.out.println(interno);
-    
-  }
-    
-  }
-
-
-  public Interno modificaInterno(Interno interno){
-
-        for (int i=0;i<listaInternos.size();i++){
-          if (listaInternos.get(i)==interno){
-            listaInternos.set(i, interno);
-
-          }
-
-        }
+    Interno interno = buscaInterno(nombre);
+    interno.setRegimen(regimen);
 
     return interno;
 
   }
 
+  public void imprimeInterno() {
 
-  
-  
+    for (Interno interno : listaInternos) {
+
+      System.out.println(interno);
+
+    }
+
+  }
+
 }
