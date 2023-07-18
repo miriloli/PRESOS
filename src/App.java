@@ -1,5 +1,7 @@
-import javax.swing.JOptionPane;
+
 import java.util.*;
+
+import javax.xml.transform.stax.StAXResult;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -39,20 +41,46 @@ public class App {
          * 
          */
 
-
-
-
-
-
-        
         Scanner sc = new Scanner(System.in);
-        
-        Interno interno=new Interno();
-        
 
+        Interno interno = new Interno();
+        Prision prision = new Prision();
+        System.out.println(" 1.añadir preso\n 2.borrar preso\n");
+        String option = sc.nextLine();
+        int numeroInterno = 1;
+        int option2=Integer.parseInt(option);
+        switch (option2) {
 
+            case 1:
+                System.out.println("Introduzca el nombre del interno a continuación:  ");
+                String nombre = sc.nextLine();
+                interno.setNombre(nombre);
+                System.out.println("Introduzca el régimen del interno a continuación:  ");
+                String regimen = sc.nextLine();
+                interno.setRegimen(regimen);
+                interno.setNumeroInterno(numeroInterno);
+                numeroInterno++;
+                prision.anadeInterno(interno);
 
+                break;
+            case 2:
+                System.out.println("Introduzca un nombre de interno: ");
+                Interno internoEncontrado = prision.buscaInterno(sc.nextLine());
+                prision.eliminaInterno(internoEncontrado);
 
+                break;
+
+            case 3:
+
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+
+        }
+
+        sc.close();
 
     }
 }

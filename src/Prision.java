@@ -45,7 +45,7 @@ public class Prision {
 
   List<Interno> listaInternos = new ArrayList<Interno>();
 
-  public Interno añardeInterno(Interno interno) {
+  public Interno anadeInterno(Interno interno) {
 
     listaInternos.add(interno);
 
