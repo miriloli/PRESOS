@@ -44,7 +44,7 @@ public class App {
         Scanner sc = new Scanner(System.in);
 
         Interno interno = new Interno();
-        FuncionalidadPrision prision = new FuncionalidadPrision();
+        Prision prision = new Prision();
         prision.internosPorDefecto();
 
         while (true) {

@@ -1,43 +1,9 @@
 public class Interno {
-  /*
-   * Se deben crear tres clases,
-   * una llamada Interno, otra Prisión y una Main de prueba. Dependiendo de la
-   * forma que uses para ordenar, puede que haga falta otra clase más.
-   * 
-   * Los Internos están caracterizados por: Nombre, régimen (Un string. Pueden
-   * ser: baja peligrosidad,
-   * preventivo y máxima seguridad) y el número de interno.
-   * 
-   * Nuestra clase Prisión se caracteriza por una lista de internos.
-   * 
-   * En ella, se debe poder hacer lo siguiente:
-   * 
-   * - Añadir un nuevo interno (meter preso).
-   * 
-   * - Borrar un interno de la lista buscando antes al mismo (sale libre).
-   * 
-   * - Imprimir todos los datos de todos los internos de la lista.
-   * 
-   * - Buscar un interno por nombre.
-   * 
-   * - Modificar el régimen de un preso buscando antes al mismo, por ejemplo,
-   * puede pasar de
-   * preventivo a máxima seguridad.
-   * 
-   * - Ordenar la lista régimen.
-   * 
-   * Se puede usar, si se quiere, un método que cargue la lista con varios
-   * internos de prueba.
-   *
-   * Crear un menú en la clase principal donde se pueda comprobar toda la
-   * funcionalidad del programa.*** (con un menu me refiero a que imprimas algunos
-   * mensajes user friendly para verlo y probarlo bien)
-   * 
-   */
 
-  String nombre = "";
-  Regimen regimen = null;
-  int numeroInterno = 0;
+
+  private String nombre = "";
+  private Regimen regimen = null;
+  private int numeroInterno = 0;
 
   public Regimen getRegimen() {
     return regimen;
@@ -76,12 +42,61 @@ public class Interno {
     this.numeroInterno = numeroInterno;
   }
 
+  
+  //Esto es la expresion de un interno como cadena, o sea como tipo String
   public String toString(){
 
     return nombre;
   }
 
+  //Criterio de igualdad,que ca a seguir java para con nuestros internos
+  public boolean equals(Object obj){
+    boolean resultado = false;
+
+    //o es un Objeto, que no se que tipo tiene
+    //le estoy preguntando si es de tipo interno
+    if(!(obj instanceof Interno)){
+      resultado = false; //esto directamente acaba la funcion
+                    //y me devuelve un false;
+    }
+
+    Interno auxiliar = ((Interno) obj);
+
+    //si llego aqui significa que si lo es
+    if (auxiliar.getNombre().equals(this.nombre)){ 
+      if(auxiliar.getNumeroInterno() == this.numeroInterno){
+        resultado = true;
+      }
+    }
 
 
 
+    return resultado;
+  }
+
+
+
+  //Criterio de orden natural, y esto es lo que mira java a la hora de ordenar nuestros internos
+  //esto nos devuelve -1, si el interno con el que comparamos va delante nuestra,
+  //nos devuelve 0 si el orden es el mismo o da igual
+  //nos devuelve 1 si el interno va detras nuestra
+  //entonces te lo ordeno por numero de preso, pero tu te buscas vida
+  public int compareTo(Interno internoAComparar){
+    int resultado=0;
+
+    if(internoAComparar.getNumeroInterno() < this.numeroInterno){
+      resultado=-1; 
+    }
+    if(internoAComparar.getNumeroInterno() == this.numeroInterno){
+      resultado=0;
+    }
+
+    if(internoAComparar.getNumeroInterno() > this.numeroInterno){
+      resultado=1;
+    }
+
+    return resultado;    
+  }
+
+  //tulista_o_tu_coleccion.sort()
 }
