@@ -41,13 +41,13 @@ public class App {
          * 
          */
 
-        Scanner sc = new Scanner(System.in);
-
         Interno interno = new Interno();
         FuncionalidadPrision prision = new FuncionalidadPrision();
         prision.internosPorDefecto();
+        Scanner sc = new Scanner(System.in);
 
         while (true) {
+            
             System.out.println(
                     " 1.Añadir interno\n 2.Borrar interno\n 3.Buscar interno\n 4.Modificar interno\n 5.Imprimir lista de internos");
             String option = sc.nextLine();
@@ -80,7 +80,7 @@ public class App {
                 case 3:
                     System.out.println("Introduzca el nombre del interno a buscar: ");
                     Interno internoEncontrado2 = prision.buscaInterno(sc.nextLine());
-                    System.out.println();/* Como muestro el interno que me ha encontrado? */
+                    System.out.println(internoEncontrado2);/* Como muestro el interno que me ha encontrado? */
                     break;
                 case 4:
                     Regimen regimen2 = null;
@@ -100,7 +100,8 @@ public class App {
                     break;
 
             }
+            
         }
-
+        
     }
 }

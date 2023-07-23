@@ -78,7 +78,9 @@ public class Interno {
 
   public String toString(){
 
-    return nombre;
+    return nombre +" "+ regimen+ " "+ String.valueOf(numeroInterno)+" " ;
+    
+    
   }
 
 
