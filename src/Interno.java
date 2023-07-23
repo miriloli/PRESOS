@@ -36,10 +36,20 @@ public class Interno {
    */
 
   String nombre = "";
-  String regimen = "";
+  Regimen regimen = null;
   int numeroInterno = 0;
 
-  public Interno(String nombre, String regimen, int numeroInterno) {
+  public Regimen getRegimen() {
+    return regimen;
+  }
+
+  public void setRegimen(Regimen regimen) {
+    this.regimen = regimen;
+  }
+
+
+
+  public Interno(String nombre, Regimen regimen, int numeroInterno) {
     this.nombre = nombre;
     this.regimen = regimen;
     this.numeroInterno = numeroInterno;
@@ -56,13 +66,7 @@ public class Interno {
     this.nombre = nombre;
   }
 
-  public String getRegimen() {
-    return this.regimen;
-  }
-
-  public void setRegimen(String regimen) {
-    this.regimen = regimen;
-  }
+ 
 
   public int getNumeroInterno() {
     return this.numeroInterno;
@@ -71,5 +75,13 @@ public class Interno {
   public void setNumeroInterno(int numeroInterno) {
     this.numeroInterno = numeroInterno;
   }
+
+  public String toString(){
+
+    return nombre;
+  }
+
+
+
 
 }

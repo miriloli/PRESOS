@@ -74,7 +74,7 @@ public class Prision {
     return interno;
   }
 
-  public Interno modificaRegimenInterno(String nombre, String regimen) {
+  public Interno modificaRegimenInterno(String nombre, Regimen regimen) {
 
     Interno interno = buscaInterno(nombre);
     interno.setRegimen(regimen);
@@ -90,6 +90,22 @@ public class Prision {
       System.out.println(interno);
 
     }
+
+  }
+
+  public void internosPorDefecto() {
+
+    Interno interno = new Interno("Pepe", Regimen.BAJA_PELIGROSIDAD, 001);
+    Interno interno2 = new Interno("Roberto", Regimen.PREVENTIVO, 002);
+    Interno interno3 = new Interno("susmuertos",Regimen.MAXIMA_SEGURIDAD,003);
+    Interno interno4 = new Interno("pppppp", Regimen.MAXIMA_SEGURIDAD, 004);
+    Interno interno5 = new Interno("Carlos",  Regimen.PREVENTIVO, 005);
+
+    anadeInterno(interno);
+    anadeInterno(interno2);
+    anadeInterno(interno3);
+    anadeInterno(interno4);
+    anadeInterno(interno5);
 
   }
 

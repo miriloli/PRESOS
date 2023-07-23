@@ -1,8 +1,6 @@
 
 import java.util.*;
 
-import javax.xml.transform.stax.StAXResult;
-
 public class App {
     public static void main(String[] args) throws Exception {
         /*
@@ -39,48 +37,54 @@ public class App {
          * funcionalidad del programa.*** (con un menu me refiero a que imprimas algunos
          * mensajes user friendly para verlo y probarlo bien)
          * 
+         * Meter el número de preso de manera automatica
+         * 
          */
 
         Scanner sc = new Scanner(System.in);
 
         Interno interno = new Interno();
         Prision prision = new Prision();
-        System.out.println(" 1.añadir preso\n 2.borrar preso\n");
-        String option = sc.nextLine();
-        int numeroInterno = 1;
-        int option2=Integer.parseInt(option);
-        switch (option2) {
+        prision.internosPorDefecto();
 
-            case 1:
-                System.out.println("Introduzca el nombre del interno a continuación:  ");
-                String nombre = sc.nextLine();
-                interno.setNombre(nombre);
-                System.out.println("Introduzca el régimen del interno a continuación:  ");
-                String regimen = sc.nextLine();
-                interno.setRegimen(regimen);
-                interno.setNumeroInterno(numeroInterno);
-                numeroInterno++;
-                prision.anadeInterno(interno);
+        while (true) {
+            System.out.println(" 1.Añadir interno\n 2.Borrar interno\n 3.Imprimir lista de internos");
+            String option = sc.nextLine();
+            int numeroInterno = 1;
+            int option2 = Integer.parseInt(option);
 
-                break;
-            case 2:
-                System.out.println("Introduzca un nombre de interno: ");
-                Interno internoEncontrado = prision.buscaInterno(sc.nextLine());
-                prision.eliminaInterno(internoEncontrado);
+            switch (option2) {
 
-                break;
+                case 1:
+                    System.out.println("Introduzca el nombre del interno a continuación:  ");
+                    String nombre = sc.nextLine();
+                    interno.setNombre(nombre);
+                    System.out.println("Introduzca el régimen del interno a continuación (Preventivo, baja peligrosidad o máxima seguridad):  ");
+                    String pepe = sc.nextLine();
+                    Regimen regimen=Utils.parseRegimen(pepe);
+                    interno.setRegimen(regimen);
+                    interno.setNumeroInterno(numeroInterno);
+                    numeroInterno++;
+                    prision.anadeInterno(interno);
 
-            case 3:
+                    break;
+                case 2:
+                    System.out.println("Introduzca un nombre de interno: ");
+                    Interno internoEncontrado = prision.buscaInterno(sc.nextLine());
+                    prision.eliminaInterno(internoEncontrado);
 
-                break;
-            case 4:
-                break;
-            case 5:
-                break;
+                    break;
+                    
+                case 3: prision.imprimeInterno();
+                        
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    break;
 
+            }
         }
-
-        sc.close();
 
     }
 }
