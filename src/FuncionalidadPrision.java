@@ -1,7 +1,7 @@
 
 import java.util.*;
 
-public class Prision {
+public class FuncionalidadPrision {
 
   /*
    * ¡¡¡¡¡PREGUNTA!!!!! -> Para buscar a un preso por qué atributo debería

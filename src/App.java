@@ -44,11 +44,12 @@ public class App {
         Scanner sc = new Scanner(System.in);
 
         Interno interno = new Interno();
-        Prision prision = new Prision();
+        FuncionalidadPrision prision = new FuncionalidadPrision();
         prision.internosPorDefecto();
 
         while (true) {
-            System.out.println(" 1.Añadir interno\n 2.Borrar interno\n 3.Imprimir lista de internos");
+            System.out.println(
+                    " 1.Añadir interno\n 2.Borrar interno\n 3.Buscar interno\n 4.Modificar interno\n 5.Imprimir lista de internos");
             String option = sc.nextLine();
             int numeroInterno = 1;
             int option2 = Integer.parseInt(option);
@@ -59,9 +60,10 @@ public class App {
                     System.out.println("Introduzca el nombre del interno a continuación:  ");
                     String nombre = sc.nextLine();
                     interno.setNombre(nombre);
-                    System.out.println("Introduzca el régimen del interno a continuación (Preventivo, baja peligrosidad o máxima seguridad):  ");
-                    String pepe = sc.nextLine();
-                    Regimen regimen=Utils.parseRegimen(pepe);
+                    System.out.println(
+                            "Introduzca el régimen del interno a continuación (Preventivo, baja peligrosidad o máxima seguridad):  ");
+                    String regimenInicial = sc.nextLine();
+                    Regimen regimen = Utils.parseRegimen(regimenInicial);
                     interno.setRegimen(regimen);
                     interno.setNumeroInterno(numeroInterno);
                     numeroInterno++;
@@ -74,13 +76,27 @@ public class App {
                     prision.eliminaInterno(internoEncontrado);
 
                     break;
-                    
-                case 3: prision.imprimeInterno();
-                        
+
+                case 3:
+                    System.out.println("Introduzca el nombre del interno a buscar: ");
+                    Interno internoEncontrado2 = prision.buscaInterno(sc.nextLine());
+                    System.out.println();/* Como muestro el interno que me ha encontrado? */
                     break;
                 case 4:
+                    Regimen regimen2 = null;
+                    System.out.println("Introduzca el nombre del interno cuyo regimen desea modificar: ");
+                    /* Interno internoEncontrado3= prision.buscaInterno(sc.nextLine()); */
+                    prision.modificaRegimenInterno(sc.nextLine(), regimen2); /*
+                                                                              * No se como pasar aqui un interno
+                                                                              * (interno entero que me devuelve la
+                                                                              * búsqueda) a String (nombre del interno
+                                                                              * que ha buscado y que pide como parámetro
+                                                                              * en el método modificar)
+                                                                              */
                     break;
+                /* Por qué salta otra vez el inicio del programa? */
                 case 5:
+                    prision.imprimeInterno();
                     break;
 
             }
