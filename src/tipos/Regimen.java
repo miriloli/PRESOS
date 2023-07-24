@@ -1,4 +1,4 @@
-
+package tipos;
 public enum Regimen {
 
 PREVENTIVO,
