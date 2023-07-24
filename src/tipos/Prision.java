@@ -1,3 +1,5 @@
+package tipos;
+
 
 import java.util.*;
 

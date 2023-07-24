@@ -1,106 +1,115 @@
 
 import java.util.*;
 
+import tipos.Interno;
+import tipos.Prision;
+import tipos.Regimen;
+
 public class App {
     public static void main(String[] args) throws Exception {
-        /*
-         * Se deben crear tres clases,
-         * una llamada Interno, otra Prisión y una Main de prueba. Dependiendo de la
-         * forma que uses para ordenar, puede que haga falta otra clase más.
-         * 
-         * Los Internos están caracterizados por: Nombre, régimen (Un string. Pueden
-         * ser: baja peligrosidad,
-         * preventivo y máxima seguridad) y el número de interno.
-         * 
-         * Nuestra clase Prisión se caracteriza por una lista de internos.
-         * 
-         * En ella, se debe poder hacer lo siguiente:
-         * 
-         * - Añadir un nuevo interno (meter preso).
-         * 
-         * - Borrar un interno de la lista buscando antes al mismo (sale libre).
-         * 
-         * - Imprimir todos los datos de todos los internos de la lista.
-         * 
-         * - Buscar un interno por nombre.
-         * 
-         * - Modificar el régimen de un preso buscando antes al mismo, por ejemplo,
-         * puede pasar de
-         * preventivo a máxima seguridad.
-         * 
-         * - Ordenar la lista régimen.
-         * 
-         * Se puede usar, si se quiere, un método que cargue la lista con varios
-         * internos de prueba.
-         *
-         * Crear un menú en la clase principal donde se pueda comprobar toda la
-         * funcionalidad del programa.*** (con un menu me refiero a que imprimas algunos
-         * mensajes user friendly para verlo y probarlo bien)
-         * 
-         * Meter el número de preso de manera automatica
-         * 
-         */
 
         Scanner sc = new Scanner(System.in);
 
+        //todo esto son variables a nivel 
+        //de clase reutilizable por el programador
         Interno interno = new Interno();
         Prision prision = new Prision();
         prision.internosPorDefecto();
+        int numeroInterno = 1;
 
-        while (true) {
-            System.out.println(
-                    " 1.Añadir interno\n 2.Borrar interno\n 3.Buscar interno\n 4.Modificar interno\n 5.Imprimir lista de internos");
-            String option = sc.nextLine();
-            int numeroInterno = 1;
-            int option2 = Integer.parseInt(option);
+        //esto para controlar las opciones del menu
+        int option = 0;
 
-            switch (option2) {
+        do{
+            //esto es el Syso que imprime el menu
+            //lo he sacado fuera para guarrear menos
+            //ctrl + click en, para ir a la definicion de la funcion
+            mostrarMenu();
+
+            String userOPtion = sc.nextLine();
+            option = Integer.parseInt(userOPtion);
+
+            switch (option) {
 
                 case 1:
+                    System.out.println("Va usted a añadir un preso, a continuación se le pedirán diferentes datos");
+                    
+                    //Manejamos el nombre
                     System.out.println("Introduzca el nombre del interno a continuación:  ");
                     String nombre = sc.nextLine();
                     interno.setNombre(nombre);
-                    System.out.println(
-                            "Introduzca el régimen del interno a continuación (Preventivo, baja peligrosidad o máxima seguridad):  ");
+
+                    //Manejamos el regimen
+                    System.out.println("Introduzca el régimen del interno a continuación (Preventivo, baja peligrosidad o máxima seguridad):  ");
                     String regimenInicial = sc.nextLine();
                     Regimen regimen = Utils.parseRegimen(regimenInicial);
                     interno.setRegimen(regimen);
+
+                    //manejamos el numero
                     interno.setNumeroInterno(numeroInterno);
                     numeroInterno++;
+
+                    //cuando ya lo tenemos todo añadimos
                     prision.anadeInterno(interno);
-
                     break;
-                case 2:
-                    System.out.println("Introduzca un nombre de interno: ");
-                    Interno internoEncontrado = prision.buscaInterno(sc.nextLine());
-                    prision.eliminaInterno(internoEncontrado);
 
+                case 2:
+                    System.out.println("Va usted a eliminar un preso");
+                    
+                    //preguntamos y borramos, no necesitamos variables nuevas
+                    //podemos usar la de antes por que solo vamos a ejecutar
+                    //un caso a la vez.
+                    System.out.println("Introduzca el nombre del interno a eliminar: ");
+                    interno = prision.buscaInterno(sc.nextLine());
+                    prision.eliminaInterno(interno);
                     break;
 
                 case 3:
+                    //aqui lo mismos, solo estamos en este caso
+                    //podemos usar la variable que hemos declarado
+                    //arriba del todo una vez.
                     System.out.println("Introduzca el nombre del interno a buscar: ");
-                    Interno internoEncontrado2 = prision.buscaInterno(sc.nextLine());
-                    System.out.println();/* Como muestro el interno que me ha encontrado? */
+                    interno = prision.buscaInterno(sc.nextLine());
+                    System.out.println(interno);
                     break;
+
                 case 4:
-                    Regimen regimen2 = null;
+                    //manejamos para pedir el nombre, y de nuevo
+                    //utilizamos la variable qe tenemos a nivel de clase
                     System.out.println("Introduzca el nombre del interno cuyo regimen desea modificar: ");
-                    /* Interno internoEncontrado3= prision.buscaInterno(sc.nextLine()); */
-                    prision.modificaRegimenInterno(sc.nextLine(), regimen2); /*
-                                                                              * No se como pasar aqui un interno
-                                                                              * (interno entero que me devuelve la
-                                                                              * búsqueda) a String (nombre del interno
-                                                                              * que ha buscado y que pide como parámetro
-                                                                              * en el método modificar)
-                                                                              */
+                    interno= prision.buscaInterno(sc.nextLine());
+                    
+                    //manejamos regimen
+                    regimen = null;
+                    System.out.println("Ahora Introduzca el nuevo Regimen del interno: ");
+                    regimen = Utils.parseRegimen(sc.nextLine());
+
+                    //finalmente modificamos
+                    prision.modificaRegimenInterno(interno.getNombre(), regimen);
                     break;
-                /* Por qué salta otra vez el inicio del programa? */
+                
                 case 5:
+                    //aqui no deberia de haber preguntas
                     prision.imprimeInterno();
                     break;
 
+                case 0:
+                    option = 0;
+                    break;
             }
-        }
+        }while (option != 0);
+    
+        sc.close();
+    }
 
+    static void mostrarMenu() {
+        System.out.println(
+                    "1. Añadir interno\n"+
+                    "2. Borrar interno\n"+
+                    "3. Buscar interno\n"+
+                    "4. Modificar interno\n"+
+                    "5. Imprimir lista de internos\n"+
+                    "0. Salir"
+        );
     }
 }

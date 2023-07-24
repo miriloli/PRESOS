@@ -1,19 +1,9 @@
+package tipos;
 public class Interno {
-
 
   private String nombre = "";
   private Regimen regimen = null;
   private int numeroInterno = 0;
-
-  public Regimen getRegimen() {
-    return regimen;
-  }
-
-  public void setRegimen(Regimen regimen) {
-    this.regimen = regimen;
-  }
-
-
 
   public Interno(String nombre, Regimen regimen, int numeroInterno) {
     this.nombre = nombre;
@@ -22,6 +12,7 @@ public class Interno {
   }
 
   public Interno() {
+  
   }
 
   public String getNombre() {
@@ -31,8 +22,14 @@ public class Interno {
   public void setNombre(String nombre) {
     this.nombre = nombre;
   }
-
- 
+  
+  public Regimen getRegimen() {
+    return regimen;
+  }
+  
+  public void setRegimen(Regimen regimen) {
+    this.regimen = regimen;
+  }
 
   public int getNumeroInterno() {
     return this.numeroInterno;
@@ -42,11 +39,10 @@ public class Interno {
     this.numeroInterno = numeroInterno;
   }
 
-  
   //Esto es la expresion de un interno como cadena, o sea como tipo String
   public String toString(){
 
-    return nombre;
+    return "nombre: \t"+nombre+"\n" + "numero: \t"+numeroInterno+"\n" + "régimen: \t"+ regimen +"\n";
   }
 
   //Criterio de igualdad,que ca a seguir java para con nuestros internos
@@ -59,21 +55,17 @@ public class Interno {
       resultado = false; //esto directamente acaba la funcion
                     //y me devuelve un false;
     }
-
-    Interno auxiliar = ((Interno) obj);
-
+    
     //si llego aqui significa que si lo es
+    Interno auxiliar = ((Interno) obj);
     if (auxiliar.getNombre().equals(this.nombre)){ 
       if(auxiliar.getNumeroInterno() == this.numeroInterno){
         resultado = true;
       }
     }
 
-
-
     return resultado;
   }
-
 
 
   //Criterio de orden natural, y esto es lo que mira java a la hora de ordenar nuestros internos
@@ -98,5 +90,4 @@ public class Interno {
     return resultado;    
   }
 
-  //tulista_o_tu_coleccion.sort()
 }

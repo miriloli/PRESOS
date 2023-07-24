@@ -1,9 +1,11 @@
+import tipos.Regimen;
+
 public class Utils {
 
-    public static Regimen parseRegimen(String pepe){
+    public static Regimen parseRegimen(String regimenStr){
 
         Regimen regimen=null;
-        switch(pepe){
+        switch(regimenStr){
             case "preventivo":
             regimen= Regimen.PREVENTIVO;
             break;
@@ -21,7 +23,23 @@ public class Utils {
 
     }
 
+    public static String regimenToString(Regimen regimen){
+        String regimenStr="";
+        switch(regimen){
+            case PREVENTIVO:
+                regimenStr="preventivo";
+                break;
 
+            case BAJA_PELIGROSIDAD:
+                regimenStr="baja peligrosidad";
+                break;
+
+            case MAXIMA_SEGURIDAD:
+                regimenStr="máxima seguridad";
+                break;
+        }
+        return regimenStr;
+    }
     
     
 }
